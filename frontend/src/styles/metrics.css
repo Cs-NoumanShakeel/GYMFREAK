@@ -1,0 +1,117 @@
+/* Simple responsive CSS for MetricsSection */
+
+@media (max-width: 480px) {
+  .metrics-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 87% !important;
+    height: auto !important;
+    margin: 20px auto !important;
+    padding: 20px !important;
+    margin-left: 49px !important;
+   
+  }
+  
+  .metrics-card {
+    height: 250px !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+    
+  }
+}
+/* Metrics.css - Mobile Responsive Design */
+
+/* iPhone SE, 5s (320px width) */
+@media (max-width: 375px) {
+  .metrics-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 85% !important;
+    height: auto !important;
+    margin: 15px auto !important;
+    padding: 15px !important;
+    margin-left: 40px !important;
+  }
+
+  .metrics-card {
+    height: 220px !important;
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+}
+
+/* iPhone 6/7/8, iPhone X/XS (375px width) */
+@media (min-width: 376px) and (max-width: 414px) {
+  .metrics-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 90% !important;
+    height: auto !important;
+    margin: 18px auto !important;
+    padding: 18px !important;
+    margin-left: 45px !important;
+  }
+
+  .metrics-card {
+    height: 230px !important;
+    width: 100% !important;
+    margin-bottom: 18px !important;
+  }
+}
+
+/* iPhone XR, 11 (414px width) - Your current perfect settings */
+@media (min-width: 415px) and (max-width: 480px) {
+  .metrics-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 87% !important;
+    height: auto !important;
+    margin: 20px auto !important;
+    padding: 20px !important;
+    margin-left: 49px !important;
+  }
+
+  .metrics-card {
+    height: 250px !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+/* Large phones like iPhone Plus, Samsung Galaxy (481px - 600px) */
+@media (min-width: 481px) and (max-width: 600px) {
+  .metrics-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 88% !important;
+    height: auto !important;
+    margin: 22px auto !important;
+    padding: 22px !important;
+    margin-left: 52px !important;
+  }
+
+  .metrics-card {
+    height: 270px !important;
+    width: 100% !important;
+    margin-bottom: 22px !important;
+  }
+}
+
+/* Small tablets (601px - 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .metrics-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    width: 90% !important;
+    height: auto !important;
+    margin: 25px auto !important;
+    padding: 25px !important;
+    margin-left: 60px !important;
+  }
+
+  .metrics-card {
+    height: 280px !important;
+    width: 100% !important;
+    margin-bottom: 25px !important;
+  }
+}

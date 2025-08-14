@@ -1,0 +1,95 @@
+/* Dashboard.css - Final Perfect Responsive Version */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden; /* prevent horizontal scroll */
+  background-color: #0F172A;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px; /* Account for fixed topbar */
+
+  transition: padding-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+
+
+/* When sidebar is extended */
+.sidebar.extended ~ .main-content {
+  padding-left: 7px;
+
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Large screens (1024px and below) */
+@media (max-width: 1024px) {
+  .main-content {
+    margin-top: 75px;
+    padding-left: 60px;
+  }
+
+  .sidebar.extended ~ .main-content {
+    padding-left: 250px;
+  }
+}
+
+/* Medium screens (768px and below) - RESPONSIVE MODE STARTS */
+@media (max-width: 768px) {
+  .dashboard-container {
+    background-color: #0F172A;
+  }
+
+  .main-content {
+    margin-top: 70px;
+    padding-left: 0 !important; /* No sidebar padding in responsive */
+  }
+
+  /* Override sidebar extended behavior in responsive */
+  .sidebar.extended ~ .main-content {
+    padding-left: 0 !important;
+  }
+}
+
+/* Mobile screens (480px and below) - PERFECT SPACING */
+@media (max-width: 480px) {
+  .dashboard-container {
+    background-color: #0F172A;
+  }
+
+  .main-content {
+    margin-top: 80px; /* Account for single-row topbar */
+    padding-left: 0 !important;
+  }
+
+  .sidebar.extended ~ .main-content {
+    padding-left: 0 !important;
+  }
+}
+
+/* Extra small mobile (375px and below) */
+@media (max-width: 375px) {
+  .main-content {
+    margin-top: 70px;
+  }
+}
+
+/* Very small devices (320px and below) */
+@media (max-width: 320px) {
+  .main-content {
+    margin-top: 65px;
+  }
+}

@@ -1,0 +1,398 @@
+/* Topbar.css - Final Perfect Responsive Version */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 70px;
+  right: 0;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glass morphism effect */
+.topbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(20px);
+  background: rgba(26, 26, 46, 0.9);
+  z-index: -1;
+}
+
+/* Adjust topbar position when sidebar is extended (DESKTOP ONLY) */
+.sidebar.extended ~ * .topbar,
+.topbar.sidebar-extended {
+  left: 280px;
+}
+
+/* Left Section - Search */
+.topbar-left {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+}
+
+.topbar-left .searchbar {
+  width: 100%;
+  height: 45px;
+  padding: 0 20px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.topbar-left .searchbar::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+.topbar-left .searchbar:focus {
+  border-color: #64ffda;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+  transform: translateY(-2px);
+}
+
+.topbar-left .searchbar:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Middle Section - Welcome Message */
+.topbar-middle {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.topbar-middle h2 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  text-align: center;
+  background: linear-gradient(45deg, #ffffff, #64ffda);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(100, 255, 218, 0.3);
+}
+
+/* Right Section - Icons */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.topbar-right img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  filter: invert(1);
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.topbar-right img:hover {
+  transform: scale(1.15) translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Individual icon styles */
+.bright-icon:hover {
+  filter: invert(1) sepia(1) saturate(5) hue-rotate(45deg);
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+}
+
+.notification-icon:hover {
+  filter: invert(1) sepia(1) saturate(5) hue-rotate(200deg);
+  box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+  animation: bellRing 0.6s ease-in-out;
+}
+
+.profile-icon {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.profile-icon:hover {
+  border-color: #64ffda;
+  filter: invert(1) sepia(1) saturate(5) hue-rotate(160deg);
+  box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4);
+}
+
+/* Animations */
+@keyframes bellRing {
+  0%, 100% { transform: scale(1.15) translateY(-2px) rotate(0deg); }
+  25% { transform: scale(1.15) translateY(-2px) rotate(-10deg); }
+  75% { transform: scale(1.15) translateY(-2px) rotate(10deg); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Large screens (1024px and below) */
+@media (max-width: 1024px) {
+  .topbar {
+    left: 60px;
+    padding: 0 20px;
+    height: 75px;
+  }
+
+  .topbar.sidebar-extended {
+    left: 250px;
+  }
+
+  .topbar-middle {
+    margin: 0 15px;
+  }
+
+  .topbar-middle h2 {
+    font-size: 20px;
+  }
+
+  .topbar-left {
+    max-width: 300px;
+  }
+
+  .topbar-left .searchbar {
+    height: 40px;
+    font-size: 14px;
+    padding: 0 15px;
+  }
+}
+
+/* Medium screens (768px and below) - RESPONSIVE MODE STARTS */
+@media (max-width: 768px) {
+  .topbar {
+    left: 0 !important; /* Override sidebar positioning */
+    width: 100% !important; /* Full width always */
+    padding: 0 15px;
+    height: 70px;
+    z-index: 999; /* Below sidebar */
+  }
+
+  /* Prevent sliding when sidebar extends in responsive */
+  .topbar.sidebar-extended {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .topbar-middle {
+    flex: 0.8;
+    margin: 0 10px;
+  }
+
+  .topbar-middle h2 {
+    font-size: 18px;
+  }
+
+  .topbar-left {
+    max-width: 250px;
+  }
+
+  .topbar-left .searchbar {
+    height: 38px;
+    font-size: 14px;
+  }
+
+  .topbar-right {
+    gap: 15px;
+  }
+
+  .topbar-right img {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+  }
+}
+
+/* Mobile screens (480px and below) - KEEP STACKED BUT REPOSITION */
+@media (max-width: 480px) {
+  .topbar {
+    left: 0 !important;
+    width: 100% !important;
+    height: auto;
+    min-height: 110px;
+    flex-direction: column;
+    padding: 15px 20px;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .topbar.sidebar-extended {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .topbar-left,
+  .topbar-middle,
+  .topbar-right {
+    width: 100%;
+    flex: none;
+  }
+
+  /* Title row - moved to LEFT with better visibility */
+  .topbar-middle {
+    order: 1;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 5px 0;
+    margin-left: 70px;
+  }
+
+  .topbar-middle h2 {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(45deg, #ffffff, #64ffda);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Search row - moved to CENTER with better contrast */
+  .topbar-left {
+    order: 2;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+    margin-left: 50px;
+  }
+
+  .topbar-left .searchbar {
+    width: 85%;
+    height: 45px;
+    font-size: 16px;
+    padding: 0 50px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-weight: 1000;
+  }
+
+  .topbar-left .searchbar::placeholder {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+
+  .topbar-left .searchbar:focus {
+    border-color: #64ffda;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
+  }
+
+  /* Icons row - moved to RIGHT */
+  .topbar-right {
+    order: 3;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 5px 0;
+  }
+
+  .topbar-right img {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Extra small mobile (375px and below) */
+@media (max-width: 375px) {
+  .topbar {
+    min-height: 105px;
+    padding: 12px 18px;
+    gap: 10px;
+  }
+
+  .topbar-middle h2 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .topbar-left .searchbar {
+    height: 42px;
+    font-size: 15px;
+    padding: 0 18px;
+    width: 85%;
+  }
+
+  .topbar-right img {
+    width: 34px;
+    height: 34px;
+    padding: 5px;
+  }
+
+  .topbar-right {
+    gap: 12px;
+  }
+}
+
+/* Very small devices (320px and below) */
+@media (max-width: 320px) {
+  .topbar {
+    min-height: 100px;
+    padding: 10px 15px;
+    gap: 8px;
+  }
+
+  .topbar-middle h2 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .topbar-left .searchbar {
+    height: 40px;
+    font-size: 14px;
+    padding: 0 15px;
+    width: 80%;
+  }
+
+  .topbar-right img {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+  }
+
+  .topbar-right {
+    gap: 10px;
+  }
+}

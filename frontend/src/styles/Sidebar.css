@@ -1,0 +1,408 @@
+/* Sidebar
+.css */
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* prevent horizontal scroll showing white edges */
+}
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100vh; /* ensures full height */
+  height: 100%; /* fallback */
+  width: 70px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+ 
+}
+
+.sidebar.extended {
+  width: 280px;
+}
+
+/* Top Section */
+.sidebar .top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+  padding: 0 24px;
+}
+
+.sidebar .top > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.sidebar .top > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.sidebar .menu {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  filter: invert(1);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sidebar .menu:hover {
+  transform: scale(1.1);
+}
+
+.sidebar .logo_icon {
+  width: 32px;
+  height: 32px;
+  filter: invert(1);
+  flex-shrink: 0;
+}
+.sidebar .menu{
+  width: 32px;
+  height: 32px;
+  filter: invert(1);
+  flex-shrink: 0;
+}
+
+.sidebar .top h3 {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+  animation-delay: 0.2s;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  white-space: nowrap;
+}
+
+/* Middle Section */
+.sidebar .middle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 0 15px;
+  flex-grow: 1;
+  justify-content: flex-start;
+  padding-top: 30px;
+}
+
+.sidebar .middle-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar .middle-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.sidebar .middle-item.active:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar .middle-item img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sidebar .middle-item:hover img {
+  transform: scale(1.1);
+}
+
+.sidebar .middle-item a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0;
+  animation: slideIn 0.3s ease forwards;
+  animation-delay: 0.1s;
+  white-space: nowrap;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.sidebar .middle-item:hover a {
+  color: #64ffda;
+}
+
+/* Bottom Section */
+.sidebar .bottom {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.sidebar .bottom-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+.sidebar .bottom-item:hover {
+  background: rgba(255, 69, 58, 0.2);
+  transform: translateX(5px);
+}
+
+.sidebar .bottom-item img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sidebar .bottom-item:hover img {
+  transform: scale(1.1);
+}
+
+.sidebar .bottom-item a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0;
+  animation: slideIn 0.3s ease forwards;
+  animation-delay: 0.1s;
+  white-space: nowrap;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.sidebar .bottom-item:hover a {
+  color: #ff453a;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+  
+  .sidebar.extended {
+    width: 250px;
+  }
+  
+  .sidebar .top h3 {
+    font-size: 16px;
+  }
+  
+  .sidebar .middle-item a,
+  .sidebar .bottom-item a {
+    font-size: 14px;
+  }
+  
+  .sidebar .middle-item,
+  .sidebar .bottom-item {
+    padding: 10px 12px;
+  }
+}
+
+/* Responsive Design - Complete Fixed Version */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+  
+  .sidebar.extended {
+    width: 250px;
+  }
+  
+  .sidebar .top h3 {
+    font-size: 16px;
+  }
+  
+  .sidebar .middle-item a,
+  .sidebar .bottom-item a {
+    font-size: 14px;
+  }
+  
+  .sidebar .middle-item,
+  .sidebar .bottom-item {
+    padding: 10px 12px;
+  }
+
+  /* Center icons when sidebar is collapsed */
+  .sidebar:not(.extended) .top {
+    align-items: center;
+    padding: 0;
+  }
+
+  .sidebar:not(.extended) .top > div:first-child,
+  .sidebar:not(.extended) .top > div:last-child {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .sidebar:not(.extended) .middle {
+    align-items: center;
+    padding: 0;
+    padding-top: 30px;
+  }
+
+  .sidebar:not(.extended) .middle-item {
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  .sidebar:not(.extended) .bottom {
+    padding: 0;
+  }
+
+  .sidebar:not(.extended) .bottom-item {
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  /* Disable hover transform when collapsed */
+  .sidebar:not(.extended) .middle-item:hover,
+  .sidebar:not(.extended) .bottom-item:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 55px;
+  }
+  
+  .sidebar.extended {
+    width: 220px;
+  }
+  
+  .sidebar .menu {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .sidebar .logo_icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .sidebar .middle-item img,
+  .sidebar .bottom-item img {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .sidebar .top h3 {
+    font-size: 14px;
+  }
+  
+  .sidebar .middle-item a,
+  .sidebar .bottom-item a {
+    font-size: 13px;
+  }
+
+  /* Center icons when sidebar is collapsed */
+  .sidebar:not(.extended) .top {
+    align-items: center;
+    padding: 0;
+  }
+
+  .sidebar:not(.extended) .top > div:first-child,
+  .sidebar:not(.extended) .top > div:last-child {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .sidebar:not(.extended) .middle {
+    align-items: center;
+    padding: 0;
+    padding-top: 30px;
+  }
+
+  .sidebar:not(.extended) .middle-item {
+    justify-content: center;
+    padding: 8px 0;
+    width: 100%;
+  }
+
+  .sidebar:not(.extended) .bottom {
+    padding: 0;
+  }
+
+  .sidebar:not(.extended) .bottom-item {
+    justify-content: center;
+    padding: 8px 0;
+    width: 100%;
+  }
+
+  /* Disable hover transform when collapsed */
+  .sidebar:not(.extended) .middle-item:hover,
+  .sidebar:not(.extended) .bottom-item:hover {
+    transform: none;
+  }
+}
+/* Add this to your existing Sidebar.css file */
+
+/* Z-Index fix for responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    z-index: 1001; /* Higher than topbar (999) */
+  }
+  
+  .sidebar.extended {
+    z-index: 1001; /* Ensure extended sidebar stays on top */
+  }
+}

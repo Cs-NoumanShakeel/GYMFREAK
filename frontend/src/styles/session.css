@@ -1,0 +1,662 @@
+body,html {
+  background-color: #ffffff !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Weight Input - Top Left */
+.input-weight {
+  position: fixed;
+  top: 20px;
+  left: 35px;
+  z-index: 500;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #2d3748;
+  width: 200px;
+  transition: all 0.3s ease;
+}
+
+.input-weight:focus {
+  outline: none;
+  border-color: #4cafef;
+  box-shadow: 0 4px 20px rgba(76, 175, 239, 0.2), 0 0 0 3px rgba(76, 175, 239, 0.1);
+  transform: translateY(-1px);
+}
+
+.input-weight::placeholder {
+  color: #a0aec0;
+  font-weight: 400;
+}
+
+.input-weight:hover {
+  border-color: #cbd5e0;
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Enhanced Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 32px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: slideIn 0.3s ease-out;
+  position: relative;
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.modal-content input[type="file"] {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 16px;
+  border: 2px dashed #cbd5e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f7fafc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-content input[type="file"]:hover {
+  border-color: #4cafef;
+  background: #edf2f7;
+  transform: scale(1.02);
+}
+
+.modal-buttons {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.modal-buttons button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-buttons button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.modal-buttons button:first-child {
+  background: linear-gradient(135deg, #4cafef 0%, #3aa4e0 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(76, 175, 239, 0.3);
+}
+
+.modal-buttons button:first-child:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3aa4e0 0%, #2b8bc9 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 239, 0.4);
+}
+
+.modal-buttons button:last-child {
+  background: linear-gradient(135deg, #f44336 0%, #d9362a 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.modal-buttons button:last-child:hover:not(:disabled) {
+  background: linear-gradient(135deg, #d9362a 0%, #c62828 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 50%;
+  border-top-color: #4cafef;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+/* Status Modal (for processing states) */
+.status-modal .modal-content {
+  padding: 40px 32px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-modal h3 {
+  margin: 20px 0 0 0;
+  color: #4a5568;
+  font-size: 1.2rem;
+}
+
+.status-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #4cafef;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Error Modal */
+.error-modal .modal-content {
+  border-top: 4px solid #f44336;
+}
+
+.error-modal h3 {
+  color: #f44336;
+  margin-bottom: 16px;
+}
+
+.error-modal p {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.error-modal button {
+  background: linear-gradient(135deg, #f44336 0%, #d9362a 100%);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.error-modal button:hover {
+  background: linear-gradient(135deg, #d9362a 0%, #c62828 100%);
+  transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spin {
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+
+/* Session Container and Cards */
+.session-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 24px;
+  width: 100%;
+  background-color: #ffffff;
+  margin: 0;
+  box-sizing: border-box;
+  margin-top: 50px;
+}
+
+.session-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px; /* Fixed height to prevent stretching */
+}
+
+.session-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: height 0.3s ease;
+}
+
+.session-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.session-card:hover::before {
+  height: 6px;
+}
+
+.session-card h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  line-height: 1.3;
+}
+.session-card.highlighted {
+  border: 3px solid #015363;
+  box-shadow: 0 0 10px rgba(0, 97, 153, 0.5);
+ 
+}
+
+.session-card video {
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.session-card video:hover {
+  transform: scale(1.02);
+}
+
+.session-card p {
+  color: #4a5568;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 auto 0;
+  flex-grow: 1;
+}
+
+/* Fixed footer to prevent button stretching */
+.session-card-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  flex-shrink: 0;
+}
+
+.try {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  margin-bottom: 16px;
+  width: 100%;
+  position: relative;
+}
+
+.try:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.try:active {
+  transform: translateY(0);
+}
+
+/* Accuracy Score Display */
+.accuracy-display {
+  display: block;
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  color: #2d3748;
+  padding: 12px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 8px;
+}
+
+.latest-accuracy {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  border: 1px solid #38a169;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.2);
+}
+
+.session-card span {
+  display: inline-block;
+  background: #f7fafc;
+  color: #2d3748;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+}
+
+/* Remove old loading and error styles since we're using modals now */
+.loading {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #4a5568;
+  margin: 40px 0;
+  padding: 20px;
+}
+
+.loading::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 50%;
+  border-top-color: #667eea;
+  animation: spin 1s ease-in-out infinite;
+  margin-left: 10px;
+}
+
+/* Responsive Design */
+
+/* Large screens (1200px and up) */
+@media (min-width: 1200px) {
+  .session-container {
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 32px;
+    padding: 32px;
+  }
+  
+  .session-card {
+    padding: 28px;
+    min-height: 450px;
+  }
+  
+  .session-card h3 {
+    font-size: 1.35rem;
+  }
+}
+
+/* Medium-large screens (992px to 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .session-container {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 28px;
+    padding: 28px;
+  }
+  
+  .session-card {
+    min-height: 420px;
+  }
+}
+
+/* Medium screens (768px to 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .session-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 24px;
+  }
+  
+  .session-card {
+    padding: 22px;
+    min-height: 400px;
+  }
+  
+  .session-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .try {
+    padding: 11px 22px;
+    font-size: 0.88rem;
+  }
+}
+
+/* Small-medium screens (576px to 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .session-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .session-card {
+    padding: 20px;
+    min-height: 380px;
+  }
+  
+  .session-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+  }
+  
+  .session-card p {
+    font-size: 0.9rem;
+  }
+  
+  .session-card-footer {
+    padding-top: 18px;
+  }
+  
+  .try {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+  }
+  
+  .accuracy-display {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+  }
+}
+
+/* Small screens (481px to 575px) */
+@media (max-width: 575px) and (min-width: 481px) {
+  .session-container {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px;
+  }
+  
+  .session-card {
+    padding: 18px;
+    min-height: 360px;
+  }
+  
+  .session-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  
+  .session-card p {
+    font-size: 0.9rem;
+  }
+  
+  .session-card-footer {
+    padding-top: 16px;
+  }
+  
+  .try {
+    padding: 10px 18px;
+    font-size: 0.82rem;
+  }
+}
+
+/* Extra small screens (480px and below) */
+@media (max-width: 480px) {
+  .session-container {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .session-card {
+    padding: 16px;
+    border-radius: 12px;
+    min-height: 340px;
+  }
+  
+  .session-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+  }
+  
+  .session-card p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  .session-card video {
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .session-card-footer {
+    padding-top: 14px;
+  }
+  
+  .try {
+    padding: 9px 16px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .accuracy-display {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+  }
+  
+  .modal-content {
+    padding: 24px;
+    border-radius: 16px;
+  }
+  
+  .modal-buttons {
+    gap: 12px;
+  }
+  
+  .modal-buttons button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive adjustments for weight input */
+
+/* Small screens (768px and below) */
+@media (max-width: 768px) {
+  .input-weight {
+    top: 15px;
+    left: 15px;
+    width: 160px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra small screens (480px and below) */
+@media (max-width: 480px) {
+  .input-weight {
+    top: 12px;
+    left: 12px;
+    width: 140px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Ultra small screens (360px and below) */
+@media (max-width: 360px) {
+  .session-container {
+    padding: 12px;
+    gap: 14px;
+  }
+  
+  .session-card {
+    padding: 14px;
+    min-height: 320px;
+  }
+  
+  .session-card h3 {
+    font-size: 1rem;
+  }
+  
+  .session-card p {
+    font-size: 0.8rem;
+  }
+  
+  .try {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+  
+  .accuracy-display {
+    font-size: 0.7rem;
+    padding: 6px 10px;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    width: 95%;
+  }
+}
