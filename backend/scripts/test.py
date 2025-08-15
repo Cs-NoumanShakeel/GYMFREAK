@@ -1,23 +1,12 @@
-import os
-import cloudinary
-import cloudinary.uploader
+import codecs
+from pathlib import Path
 
-# Cloudinary config
-cloudinary.config(
-    cloud_name="dw9dtsgdm",
-    api_key="856532649387765",
-    api_secret="x7xZ_FjJd1Drf29zlZIfut3JY_w"
-)
+script_dir = Path(__file__).parent  # folder containing this script
+input_file = script_dir / "all_data.json"
+output_file = script_dir / "all_data_clean.json"
 
-# Get the absolute path to the video file
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # folder where test.py is
-video_path = os.path.join(BASE_DIR, "sample.mp4")
+with codecs.open(input_file, "r", "utf-8-sig") as f:
+    data = f.read()
 
-# Upload
-response = cloudinary.uploader.upload_large(
-    video_path,
-    resource_type="video"
-)
-
-print("✅ Upload successful!")
-print(response["secure_url"])
+with open(output_file, "w", encoding="utf-8") as f:
+    f.write(data)

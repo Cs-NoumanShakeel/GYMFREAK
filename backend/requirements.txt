@@ -16,3 +16,5 @@ django-cloudinary-storage
 whitenoise
 dj-database-url
 numpy
+opencv-python
+mediapipe
