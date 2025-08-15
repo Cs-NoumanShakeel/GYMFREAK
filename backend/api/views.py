@@ -219,6 +219,7 @@ class HistoryList(APIView):
     
     def post(self, request):
         data = request.data.copy()
+        
         data['user'] = request.user.id
         session_id = data.get('session')
         

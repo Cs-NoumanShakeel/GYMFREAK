@@ -27,13 +27,7 @@ html, body, #root {
 
 
 
-/* When sidebar is extended */
-.sidebar.extended ~ .main-content {
-  padding-left: 7px;
 
-}
-
-/* RESPONSIVE DESIGN */
 
 /* Large screens (1024px and below) */
 @media (max-width: 1024px) {
