@@ -9,7 +9,10 @@ sqlparse
 psycopg2-binary
 python-dotenv
 gunicorn
+
 cloudinary
+
 django-cloudinary-storage
 whitenoise
 dj-database-url
+numpy

@@ -95,6 +95,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+ALLOWED_HOSTS = ["gymfreak-jhzb.onrender.com", "127.0.0.1", "localhost"]
+# or temporarily
+ALLOWED_HOSTS = ["*"]  # less secure, use only if needed
 
 
 # Database
