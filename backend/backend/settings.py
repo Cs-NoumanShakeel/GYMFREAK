@@ -29,6 +29,10 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ["gymfreak-h9ck.onrender.com", "127.0.0.1", "localhost"]
 CSRF_TRUSTED_ORIGINS = ["https://gymfreak-h9ck.onrender.com"]
+CORS_ALLOWED_ORIGINS = [
+    "https://gymsfreak.netlify.app",
+]
+
 
 
 REST_FRAMEWORK = {

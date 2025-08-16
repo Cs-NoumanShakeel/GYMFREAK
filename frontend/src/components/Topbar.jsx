@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Topbar() {
-  const { user, setUser } = useUser();
+  const { user } = useUser();
   const { color, setColor } = useColor();
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
@@ -18,15 +18,15 @@ export default function Topbar() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/sessions/")
+      .get(`${import.meta.env.VITE_API_URL}/api/sessions/`)
       .then((res) => setSessions(res.data))
       .catch(() => {
-        console.log('an error occurred');
+        console.log('An error occurred while fetching sessions');
       });
   }, []);
 
   const handleBackground = () => {
-    color ? setColor(false) : setColor(true);
+    setColor(!color);
   };
 
   const handleSearch = () => {

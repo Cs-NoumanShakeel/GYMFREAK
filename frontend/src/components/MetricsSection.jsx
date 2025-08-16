@@ -8,12 +8,13 @@ import {
 } from "recharts";
 import { ACCESS_TOKEN } from "../constants";
 import { useColor } from "../context/ColorContext";
+
 export default function MetricsSection() {
   const [pieData, setPieData] = useState([]);
   const [barData, setBarData] = useState([]);
   const [lineData, setLineData] = useState([]);
   const token = localStorage.getItem(ACCESS_TOKEN);
-  const { color, setColor } = useColor();
+  const { color } = useColor();
   const COLORS = ["#051130ff", "#001f86ff", "#00B8D9", "#36B37E", "#FF6B6B"];
 
   useEffect(() => {
@@ -22,33 +23,27 @@ export default function MetricsSection() {
 
   const fetchChartData = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/usersessionresult/", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/usersessionresult/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       const data = res.data;
 
       if (!data || data.length === 0) {
-        // No data yet, clear all datasets
         setPieData([]);
         setBarData([]);
         setLineData([]);
         return;
       }
 
-      // Sort data by created_at in descending order (most recent first)
       const sortedData = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-      
-      // Take only the last 5 entries for pie chart
       const last5Entries = sortedData.slice(0, 5);
 
-      // Pie chart: accuracy per session title (last 5 entries only)
-      const pie = last5Entries.map((item, index) => ({
+      const pie = last5Entries.map((item) => ({
         name: `${item.session_title}`,
         value: Number(parseFloat(item.accuracy_score).toFixed(2)),
       }));
 
-      // Bar chart: count attempts per session title (all data)
       const counts = {};
       data.forEach((item) => {
         const sessionName = item.session_title;
@@ -59,12 +54,8 @@ export default function MetricsSection() {
         value: counts[name],
       }));
 
-      // Line chart: calories burned over time (x-axis = HH:MM)
       const line = data.map((item) => ({
-        name: new Date(item.created_at).toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        name: new Date(item.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
         uv: item.calories,
       }));
 
@@ -73,16 +64,13 @@ export default function MetricsSection() {
       setLineData(line);
     } catch (err) {
       console.error(err);
-      // On error also clear data so no charts appear
       setPieData([]);
       setBarData([]);
       setLineData([]);
     }
   };
 
-   const dynamicBackground = color 
-    ? " #042447ff "
-    : "#0F172A";
+  const dynamicBackground = color ? " #042447ff " : "#0F172A";
 
   const cardStyle = {
     background: "#1E293B",
@@ -104,7 +92,6 @@ export default function MetricsSection() {
     color: "#E2E8F0",
   };
 
-  // A simple centered message for no data
   const NoDataMessage = () => (
     <div style={{ color: "#94A3B8", fontSize: "16px", fontWeight: "500" }}>
       No data yet
@@ -127,10 +114,9 @@ export default function MetricsSection() {
         background: dynamicBackground,
         borderRadius: "12px",
         marginTop: "-300px",
-        
       }}
     >
-      {/* Donut Chart - Last 5 Recent Entries */}
+      {/* Donut Chart */}
       <div className="metrics-card" style={cardStyle}>
         <h2 style={titleStyle}>Recent Accuracy by Session (Last 5)</h2>
         {pieData.length === 0 ? (
@@ -151,9 +137,7 @@ export default function MetricsSection() {
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip
-                contentStyle={{ background: "#fff", border: "none", color: "#000" }}
-              />
+              <Tooltip contentStyle={{ background: "#fff", border: "none", color: "#000" }} />
               <Legend
                 wrapperStyle={{ color: "#fff" }}
                 formatter={(value) => <span style={{ color: "#fff" }}>{value}</span>}
@@ -170,17 +154,11 @@ export default function MetricsSection() {
           <NoDataMessage />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              layout="vertical"
-              data={barData}
-              margin={{ top: 10, right: 20, left: 20, bottom: 5 }}
-            >
+            <BarChart layout="vertical" data={barData} margin={{ top: 10, right: 20, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
               <XAxis type="number" stroke="#94A3B8" />
               <YAxis dataKey="name" type="category" stroke="#94A3B8" />
-              <Tooltip
-                contentStyle={{ background: "#1E293B", border: "none", color: "#fff" }}
-              />
+              <Tooltip contentStyle={{ background: "#1E293B", border: "none", color: "#fff" }} />
               <Legend wrapperStyle={{ color: "#fff" }} />
               <Bar dataKey="value" fill="#00B8D9" radius={[4, 4, 0, 0]} />
             </BarChart>
@@ -199,17 +177,9 @@ export default function MetricsSection() {
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
               <XAxis dataKey="name" stroke="#94A3B8" />
               <YAxis stroke="#94A3B8" />
-              <Tooltip
-                contentStyle={{ background: "#1E293B", border: "none", color: "#fff" }}
-              />
+              <Tooltip contentStyle={{ background: "#1E293B", border: "none", color: "#fff" }} />
               <Legend wrapperStyle={{ color: "#fff" }} />
-              <Line
-                type="monotone"
-                dataKey="uv"
-                stroke="#36B37E"
-                strokeWidth={2}
-                dot={{ r: 3 }}
-              />
+              <Line type="monotone" dataKey="uv" stroke="#36B37E" strokeWidth={2} dot={{ r: 3 }} />
             </LineChart>
           </ResponsiveContainer>
         )}
