@@ -22,16 +22,12 @@ class TutorialSerializer(serializers.ModelSerializer):
 
 
 class SessionSerializer(serializers.ModelSerializer):
-    video_url = serializers.SerializerMethodField()  # <-- add this
+    video = serializers.FileField(use_url=True)
 
     class Meta:
         model = Session
-        fields = ['id', 'title', 'description', 'video_url', 'exercise_link']  # use video_url instead of video
+        fields = '__all__'
 
-    def get_video_url(self, obj):
-        if obj.video:
-            return obj.video.url
-        return None
 
 class UserSessionResultSerializer(serializers.ModelSerializer):
     session_title = serializers.CharField(source='session.title', read_only=True)
