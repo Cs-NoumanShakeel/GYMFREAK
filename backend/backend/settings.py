@@ -102,16 +102,30 @@ DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
+#CLOUDINARY_STORAGE = {
+ #   'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+  #  'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+   # 'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+#}
+
+
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': 'dw9dtsgdm',
+    'API_KEY': '856532649387765',
+    'API_SECRET': 'x7xZ_FjJd1Drf29zlZIfut3JY_w',
 }
-cloudinary.config(
-    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    api_key=os.environ.get('CLOUDINARY_API_KEY'),
-    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
+
+
+cloudinary.config( 
+  	cloud_name = "dw9dtsgdm",
+  	api_key = "856532649387765",
+  	api_secret = "x7xZ_FjJd1Drf29zlZIfut3JY_w"
 )
+#cloudinary.config(
+ #   cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+  #   api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    #api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
+#)
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
