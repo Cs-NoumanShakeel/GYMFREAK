@@ -30,7 +30,6 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ["gymfreak-h9ck.onrender.com", "127.0.0.1", "localhost"]
 
-# CORS settings
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',  # <-- required
     'api',
     'corsheaders',
 ]
