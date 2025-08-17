@@ -22,11 +22,16 @@ class TutorialSerializer(serializers.ModelSerializer):
 
 
 class SessionSerializer(serializers.ModelSerializer):
-    video = serializers.FileField(use_url=True)
+   video_url = serializers.SerializerMethodField()
 
-    class Meta:
-        model = Session
-        fields = '__all__'
+   class Meta:
+       model = Session
+       fields = ['id', 'title', 'description', 'video_url', 'exercise_link']
+
+   def get_video_url(self, obj):
+       if obj.video:
+           return f"https://gymfreak-h9ck.onrender.com{obj.video.url}"
+       return None
 
 
 class UserSessionResultSerializer(serializers.ModelSerializer):
