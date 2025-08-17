@@ -13,6 +13,9 @@ from datetime import timedelta
 from pathlib import Path
 import dj_database_url
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -97,6 +100,11 @@ DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dw9dtsgdm',
+    'API_KEY': '856532649387765',
+    'API_SECRET': 'x7xZ_FjJd1Drf29zlZIfut3JY_w',
+}
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -128,3 +136,4 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

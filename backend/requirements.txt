@@ -15,3 +15,5 @@ opencv-python
 mediapipe
 scipy
 fastdtw
+django-cloudinary-storage
+cloudinary
