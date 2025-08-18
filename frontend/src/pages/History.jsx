@@ -52,7 +52,7 @@ export default function History() {
 
               <video width="100%" height="140" controls loop autoPlay muted>
               
-                 <source src={h.video_url} type="video/mp4" />
+                 <source src={h.session_video_url} type="video/mp4" />
                 Your browser does not support HTML5 video.
               </video>
               <p>{h.session_description}</p>
