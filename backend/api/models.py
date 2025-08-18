@@ -8,7 +8,11 @@ from django.utils import timezone
 class Tutorial(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    video = models.FileField(upload_to='tutorial_videos/')
+    video = models.FileField(
+    upload_to='tutorial_videos/',
+    storage=VideoMediaCloudinaryStorage(),
+    validators=[validate_video]
+)
     exercise_link = models.URLField(blank=True, null=True)
 
     def __str__(self):
