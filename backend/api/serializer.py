@@ -63,8 +63,7 @@ class UserSessionResultSerializer(serializers.ModelSerializer):
 class HistorySerializer(serializers.ModelSerializer):
     session_title = serializers.CharField(source='session.title', read_only=True)
     session_description = serializers.CharField(source='session.description', read_only=True)
-    ##session_video = serializers.FileField(source='session.video', read_only=True)
-    session_video_url = serializers.URLField(source='session.video_url', read_only=True)
+    session_video_url = serializers.SerializerMethodField()
 
     accuracy_score = serializers.FloatField()  
     weight = serializers.FloatField()
@@ -82,3 +81,8 @@ class HistorySerializer(serializers.ModelSerializer):
             'weight',
             'created_at'
         ]
+
+    def get_session_video_url(self, obj):
+        if obj.session.video:
+            return obj.session.video.url  # Cloudinary URL
+        return None
