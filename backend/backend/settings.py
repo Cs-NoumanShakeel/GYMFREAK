@@ -129,8 +129,8 @@ CLOUDINARY_STORAGE = {
     #api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
 #)
 # Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+##MEDIA_URL = '/media/'
+##MEDIA_ROOT = BASE_DIR / 'media'
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
