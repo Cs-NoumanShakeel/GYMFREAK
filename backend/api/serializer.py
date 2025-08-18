@@ -16,9 +16,15 @@ class UserSerializer(serializers.ModelSerializer):
     
 
 class TutorialSerializer(serializers.ModelSerializer):
+    video_url = serializers.SerializerMethodField()
     class Meta:
         model = Tutorial
-        fields = '__all__'
+        fields = ['id', 'title', 'description', 'video_url', 'exercise_link']
+    def get_video_url(self, obj):
+        if obj.video:
+            return obj.video.url  # Cloudinary gives absolute URL
+        return None
+
 
 
 class SessionSerializer(serializers.ModelSerializer):

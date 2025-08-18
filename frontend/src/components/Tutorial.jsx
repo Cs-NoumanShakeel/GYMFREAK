@@ -23,10 +23,8 @@ function Tutorial() {
         <a key={tut.id} href={tut.exercise_link} className="tutorial-card">
           <h3>{tut.title}</h3>
           <video width="100%" height="140" controls loop autoPlay muted>
-            <source
-              src={`${import.meta.env.VITE_API_URL}${tut.video}`}
-              type="video/mp4"
-            />
+        
+              <source src={tut.video_url} type="video/mp4" />
             Your browser does not support HTML5 video.
           </video>
         </a>
