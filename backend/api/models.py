@@ -1,7 +1,8 @@
 from django.db import models
 
 from django.contrib.auth.models import User
-
+from cloudinary_storage.storage import VideoMediaCloudinaryStorage
+from cloudinary_storage.validators import validate_video
 from django.utils import timezone
 
 class Tutorial(models.Model):
@@ -21,7 +22,11 @@ class Tutorial(models.Model):
 class Session(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    video = models.FileField(upload_to='tutorial_videos/')
+    video = models.FileField(
+    upload_to='tutorial_videos/',
+    storage=VideoMediaCloudinaryStorage(),
+    validators=[validate_video]
+)
     exercise_link = models.URLField(blank=True, null=True)
 
     def __str__(self):
