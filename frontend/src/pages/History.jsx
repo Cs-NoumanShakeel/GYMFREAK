@@ -51,10 +51,8 @@ export default function History() {
               <h3>{h.session_title}</h3>
 
               <video width="100%" height="140" controls loop autoPlay muted>
-                <source
-                  src={`${import.meta.env.VITE_API_URL}${h.session_video}`}
-                  type="video/mp4"
-                />
+              
+                 <source src={h.video_url} type="video/mp4" />
                 Your browser does not support HTML5 video.
               </video>
               <p>{h.session_description}</p>
