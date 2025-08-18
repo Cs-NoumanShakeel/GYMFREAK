@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    'cloudinary_storage',  # <-- required
+      # <-- required
     'api',
     'corsheaders',
 ]
@@ -116,11 +117,11 @@ CLOUDINARY_STORAGE = {
 }
 
 
-cloudinary.config( 
-  	cloud_name = "dw9dtsgdm",
-  	api_key = "856532649387765",
-  	api_secret = "x7xZ_FjJd1Drf29zlZIfut3JY_w"
-)
+##cloudinary.config( 
+  ##	cloud_name = "dw9dtsgdm",
+ ## 	api_key = "856532649387765",
+ ## 	api_secret = "x7xZ_FjJd1Drf29zlZIfut3JY_w"
+##)
 #cloudinary.config(
  #   cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
   #   api_key=os.environ.get('CLOUDINARY_API_KEY'),
